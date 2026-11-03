@@ -1,0 +1,15 @@
+{
+  "name": "kindora-dev-mongo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Development-only MongoDB wire-protocol server (in-process query engine + disk persistence). Used only when a real MongoDB instance is unavailable, e.g. inside sandboxes. Production targets MongoDB Atlas.",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "bson": "^6.10.4",
+    "mingo": "^7.2.7"
+  }
+}
