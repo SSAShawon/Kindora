@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Kindora light — elegant, bright, welcoming */
+    --background: 340 100% 99%; /* #FFF9FB */
+    --foreground: 313 12% 14%; /* #292027 */
+    --card: 0 0% 100%;
+    --card-foreground: 313 12% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 313 12% 14%;
+    --primary: 339 38% 38%; /* #873C56 deep burgundy */
+    --primary-foreground: 340 100% 99%;
+    --secondary: 337 49% 91%; /* #F3DCE5 soft blush */
+    --secondary-foreground: 339 38% 30%;
+    --muted: 337 36% 95%;
+    --muted-foreground: 318 5% 46%; /* #81747C */
+    --accent: 341 45% 60%; /* #C76B88 warm rose */
+    --accent-foreground: 339 45% 16%;
+    --destructive: 0 62% 46%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 337 32% 89%;
+    --input: 337 32% 86%;
+    --ring: 339 38% 38%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    /* Kindora dark — deep, warm, comfortable (not an inversion) */
+    --background: 288 13% 8%; /* #151116 */
+    --foreground: 337 42% 93%;
+    --card: 300 14% 12%; /* #211921 */
+    --card-foreground: 337 42% 93%;
+    --popover: 300 14% 13%;
+    --popover-foreground: 337 42% 93%;
+    --primary: 341 45% 62%; /* warm rose carries the brand in the dark */
+    --primary-foreground: 339 45% 12%;
+    --secondary: 300 10% 18%;
+    --secondary-foreground: 337 40% 88%;
+    --muted: 300 9% 16%;
+    --muted-foreground: 326 8% 64%;
+    --accent: 341 45% 60%;
+    --accent-foreground: 337 42% 95%;
+    --destructive: 0 55% 56%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 300 9% 20%;
+    --input: 300 9% 24%;
+    --ring: 341 45% 62%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: hsl(337 49% 88%);
+    color: hsl(339 38% 26%);
+  }
+
+  .dark ::selection {
+    background: hsl(339 38% 32%);
+    color: hsl(337 42% 95%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-primary;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl;
+  }
+
+  .section-sub {
+    @apply mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground;
+  }
+
+  .hairline-card {
+    @apply rounded-2xl border border-border bg-card shadow-soft;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+}
+
+/* Subtle, premium scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(337 20% 82%);
+  border-radius: 8px;
+  border: 2px solid hsl(var(--background));
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: hsl(300 8% 28%);
+}
