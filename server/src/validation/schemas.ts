@@ -56,7 +56,7 @@ export const listEventsQuerySchema = z.object({
 export const updateProfileSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters.").max(80, "Name must be 80 characters or fewer."),
   image: z
-    .union([httpUrl("Photo must be a valid http(s) URL."), z.literal("")])
+    .union([httpUrl("Photo must be a valid http(s) URL."), z.literal(""), z.null()])
     .optional()
     .transform((value) => (value === "" ? null : value)),
 });

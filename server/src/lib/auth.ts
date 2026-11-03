@@ -23,6 +23,8 @@ export const auth = betterAuth({
     env.authUrl,
     "http://localhost:3000",
     "http://localhost:5000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5000",
     // Sandbox live-preview origins (development convenience only).
     "https://*.e2b.app",
     "http://*.e2b.app",
@@ -44,9 +46,14 @@ export const auth = betterAuth({
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24, // refresh expiry at most once per day
+    // The signed cookie cache is a performance layer that snapshots user data
+    // for up to its maxAge. updateUser does not invalidate it, so a profile
+    // edit (name/photo) would appear stale for minutes after a refresh. We
+    // disable it so every session read reflects the database immediately.
+    // Login persistence is unaffected — the session token cookie still keeps
+    // users signed in across refreshes; only the redundant data cache is off.
     cookieCache: {
-      enabled: true,
-      maxAge: 5 * 60,
+      enabled: false,
     },
   },
   user: {
